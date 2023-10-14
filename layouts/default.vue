@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid mx-auto">
     <div class="navbar bg-primary text-primary-content">
-      <div class="flex-1 xl:px-20 2xl:px-30">LOGO</div>
+      <div class="flex-1 xl:px-20 2xl:px-30"><Logo></Logo></div>
       <div class="flex-none hidden lg:flex">
         <ul class="menu menu-horizontal lg:px-1 xl:px-20 2xl:px-30">
           <li>
@@ -39,7 +39,7 @@
     <div class="container mx-auto">
       <NuxtPage />
     </div>
-    <!--<AConsentModal></AConsentModal>-->
+    <AConsentModal></AConsentModal>
     <footer class="footer items-center p-4 bg-neutral text-neutral-content">
       <div class="items-center grid-flow-col">
         <p>Copyright © 2023 Spero Autem LLC - All right reserved</p>

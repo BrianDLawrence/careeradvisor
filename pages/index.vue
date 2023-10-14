@@ -4,18 +4,19 @@
       <div class="prose lg:prose-xl">
         <h1>Career Advisor</h1>
       </div>
+      <TheSkillScanner></TheSkillScanner>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 useHead({
-  title: "Cats and Poetry is Catetry",
+  title: "Career Advisor",
   meta: [
     {
       name: "description",
       content:
-        "Unleash your inner poet with Catetry.com! Craft whimsical, heartwarming poems for your feline friends, and celebrate the quirky charms that make them purr-fectly unique.",
+        "A Digital Career Coach that guides individuals to realize their personal and career potential by exploring powerful, proven, and practical techniques at the intersection of Information Science, Computer Science, and Career Development. We believe that you need to know yourself to know your plan.",
     },
   ],
 });
