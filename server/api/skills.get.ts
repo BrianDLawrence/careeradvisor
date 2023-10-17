@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
     const query = getQuery(event);
     var skills_array: Skill[];
 
-    const skillLimit = 1000;
+    const skillLimit = 10000;
     let filter = {}
 
     try {

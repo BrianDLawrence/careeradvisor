@@ -4,7 +4,13 @@
       <div class="prose lg:prose-xl">
         <h1>Career Advisor</h1>
       </div>
-      <TheSkillScanner></TheSkillScanner>
+    </div>
+    <div v-if="!pending">
+        <TheSkillScanner :skillsArray="data"
+        ScannerType="SkillScannerModule"
+        ScannerTitle="Job Skill Scanner"
+        ScannedTextTitle="Job Description"
+        ScanInstructions="Copy & Paste a job description"></TheSkillScanner>
     </div>
   </div>
 </template>
@@ -20,4 +26,5 @@ useHead({
     },
   ],
 });
+const { pending, data } = await useLazyFetch("/api/skills");
 </script>
