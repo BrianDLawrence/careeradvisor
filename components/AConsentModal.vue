@@ -1,32 +1,19 @@
 <template>
-  <input
-    type="checkbox"
-    id="consent_modal"
-    class="modal-toggle"
-    aria-hidden="true"
-  />
+  <input type="checkbox" id="consent_modal" class="modal-toggle" aria-hidden="true" />
   <div class="modal">
     <div class="modal-box">
       <h3 class="font-bold text-lg">Cookie Settings</h3>
       <p class="py-4">
-        By clicking "Accept All Cookies", you agree to the use of Catetry and
+        By clicking "Accept All Cookies", you agree to the use of Career Advisor and
         third-party cookies to enhance your experience, analyse and measure your
         engagement with our content, and provide more relevant information which
         may include ads.
       </p>
       <div class="modal-action">
-        <button
-          id="decline-button"
-          class="btn btn-active btn-ghost"
-          @click="decline"
-        >
+        <button id="decline-button" class="btn btn-active btn-ghost" @click="decline">
           Decline
         </button>
-        <button
-          id="consent-button"
-          class="btn btn-active btn-primary"
-          @click="consentToAll"
-        >
+        <button id="consent-button" class="btn btn-active btn-primary" @click="consentToAll">
           Accept All Cookies
         </button>
       </div>
