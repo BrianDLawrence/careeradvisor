@@ -21,7 +21,7 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   modules: [
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss', '@pinia/nuxt',
   ],
   runtimeConfig: {// availabe only server side
     openAIKey: process.env.OPENAIKEY,

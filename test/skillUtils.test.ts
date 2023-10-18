@@ -1,5 +1,5 @@
 import { assert, expect, test } from 'vitest'
-import { parseSkillsFromText, parseSkillsWCountFromText } from '../composables/skillUtils'
+import { parseSkillsFromText, parseSkillsWCountFromText, skillHighlight, createSkillCountCompareArray } from '../composables/skillUtils'
 
 const fs = require('fs')
 const TESTSKILLDATA = JSON.parse(fs.readFileSync('test/skillstestdata.json', 'utf8'))
@@ -53,4 +53,149 @@ test('test to fix second C++ bug but in parseSkillsWithCountFromText3', () => {
     const text2 = ' Skills include \ Test Driven Development for all code\  ITIL Certified \ Workforce Management of professionals\ Workforce Management of cats\ I am additionally ITIL Certified and still love Turbo C++ '
 
     expect(parseSkillsWCountFromText(parseSkillsFromText(TESTSKILLDATA, text2), text2)).toStrictEqual(expected2)
+})
+
+test('test skillHighlight', () => {
+    const expected = 'The <mark>ITIL</mark> smart guy knows his <mark>KPIs</mark>!'
+    const textinput = 'The ITIL smart guy knows his KPIs!'
+    const highlightTheseWordsArray = ['ITIL', 'KPIs']
+
+    expect(skillHighlight(highlightTheseWordsArray, textinput)).toBe(expected)
+    const highlightTheseWordsArray2 = ['ITIL', 'KPIs', 'guy']
+    const expected2 = 'The <mark>ITIL</mark> smart <mark>guy</mark> knows his <mark>KPIs</mark>!'
+    expect(skillHighlight(highlightTheseWordsArray2, textinput)).toBe(expected2)
+})
+
+test('test skillHighlight with long inclusive skills', () => {
+    const expected = 'The <mark>ITIL</mark> smart guy knows his <mark>KPIs</mark>! He is <mark>Apache Spark</mark> cerified!'
+    const textinput = 'The ITIL smart guy knows his KPIs! He is Apache Spark cerified!'
+    const highlightTheseWordsArray = ['ITIL', 'KPIs', 'Apache', 'Apache Spark']
+
+    expect(skillHighlight(highlightTheseWordsArray, textinput)).toBe(expected)
+})
+
+test('test skillHighlight with skills next to each other in text', () => {
+    const expected = 'The smart guy knows his <mark>ITIL</mark> <mark>KPIs</mark>! He is <mark>Apache Spark</mark> cerified!'
+    const textinput = 'The smart guy knows his ITIL KPIs! He is Apache Spark cerified!'
+    const highlightTheseWordsArray = ['ITIL', 'KPIs', 'Apache', 'Apache Spark']
+
+    expect(skillHighlight(highlightTheseWordsArray, textinput)).toBe(expected)
+})
+
+test('test to fix C++ bug', () => {
+    const expected = 'The smart guy knows his <mark>C++</mark>! He is <mark>Microsoft</mark> cerified!'
+    const textinput = 'The smart guy knows his C++! He is Microsoft cerified!'
+    const highlightTheseWordsArray = ['C++', 'KPIs', 'Microsoft']
+
+    expect(skillHighlight(highlightTheseWordsArray, textinput)).toBe(expected)
+})
+
+test('test skill count compare table', () => {
+    const resumeskills = [{ skill: 'dolore', count: '1' }, { skill: 'reprehenderit', count: '2' }]
+    const jobskills = [{ skill: 'dolore', count: '2' }, { skill: 'laboris', count: '1' }, { skill: 'reprehenderit', count: '3' }]
+    const actual = createSkillCountCompareArray(jobskills, resumeskills)
+
+    expect(actual).toHaveLength(3)
+    expect(actual[0]).toHaveProperty('skill')
+    expect(actual[0].skill).toBe('dolore')
+    expect(actual[0].jobskillcount).toBe('2')
+    expect(actual[0].resumeskillcount).toBe('1')
+    expect(actual[0]).toHaveProperty('in_resume')
+
+    expect(actual[1].skill).toBe('laboris')
+    expect(actual[1].jobskillcount).toBe('1')
+    expect(actual[1].resumeskillcount).toBe('0')
+    expect(actual[1]).not.toHaveProperty('in_resume')
+
+    expect(actual[2].skill).toBe('reprehenderit')
+    expect(actual[2].jobskillcount).toBe('3')
+    expect(actual[2].resumeskillcount).toBe('2')
+    expect(actual[2]).toHaveProperty('in_resume')
+})
+
+test('test skill count compare table 2', () => {
+    const resumeskills = [{ skill: 'dolore', count: '1' }, { skill: 'reprehenderit', count: '2' }, { skill: 'laboris', count: '5' }, { skill: 'officia', count: '1' }]
+    const jobskills = [{ skill: 'dolore', count: '2' }, { skill: 'laboris', count: '1' }, { skill: 'reprehenderit', count: '3' }]
+    const actual = createSkillCountCompareArray(jobskills, resumeskills)
+
+    expect(actual).toHaveLength(3)
+    expect(actual[0]).toHaveProperty('skill')
+    expect(actual[0].skill).toBe('dolore')
+    expect(actual[0].jobskillcount).toBe('2')
+    expect(actual[0].resumeskillcount).toBe('1')
+    expect(actual[0]).toHaveProperty('in_resume')
+
+    expect(actual[1].skill).toBe('laboris')
+    expect(actual[1].jobskillcount).toBe('1')
+    expect(actual[1].resumeskillcount).toBe('5')
+    expect(actual[1]).toHaveProperty('in_resume')
+
+    expect(actual[2].skill).toBe('reprehenderit')
+    expect(actual[2].jobskillcount).toBe('3')
+    expect(actual[2].resumeskillcount).toBe('2')
+    expect(actual[2]).toHaveProperty('in_resume')
+})
+
+test('test skill count compare table 3', () => {
+    const jobskills = [{ skill: 'dolore', count: '1' }, { skill: 'reprehenderit', count: '2' }, { skill: 'laboris', count: '5' }, { skill: 'officia', count: '1' }]
+    const resumeskills = [{ skill: 'dolore', count: '2' }, { skill: 'laboris', count: '1' }, { skill: 'reprehenderit', count: '3' }]
+    const actual = createSkillCountCompareArray(jobskills, resumeskills)
+
+    expect(actual).toHaveLength(4)
+    expect(actual[0]).toHaveProperty('skill')
+    expect(actual[0].skill).toBe('dolore')
+    expect(actual[0].jobskillcount).toBe('1')
+    expect(actual[0].resumeskillcount).toBe('2')
+    expect(actual[0]).toHaveProperty('in_resume')
+
+    expect(actual[1].skill).toBe('reprehenderit')
+    expect(actual[1].jobskillcount).toBe('2')
+    expect(actual[1].resumeskillcount).toBe('3')
+    expect(actual[1]).toHaveProperty('in_resume')
+
+    expect(actual[2].skill).toBe('laboris')
+    expect(actual[2].jobskillcount).toBe('5')
+    expect(actual[2].resumeskillcount).toBe('1')
+    expect(actual[2]).toHaveProperty('in_resume')
+
+    expect(actual[3].skill).toBe('officia')
+    expect(actual[3].jobskillcount).toBe('1')
+    expect(actual[3].resumeskillcount).toBe('0')
+    expect(actual[3]).not.toHaveProperty('in_resume')
+})
+
+test('test skill count compare table with empty resumeskills', () => {
+    const resumeskills = [] as any
+    const jobskills = [{ skill: 'dolore', count: '1' }, { skill: 'reprehenderit', count: '2' }, { skill: 'laboris', count: '5' }, { skill: 'officia', count: '1' }]
+    const actual = createSkillCountCompareArray(jobskills, resumeskills)
+
+    expect(actual).toHaveLength(4)
+    expect(actual[0]).toHaveProperty('skill')
+    expect(actual[0].skill).toBe('dolore')
+    expect(actual[0].jobskillcount).toBe('1')
+    expect(actual[0].resumeskillcount).toBe('0')
+    expect(actual[0]).not.toHaveProperty('in_resume')
+
+    expect(actual[1].skill).toBe('reprehenderit')
+    expect(actual[1].jobskillcount).toBe('2')
+    expect(actual[1].resumeskillcount).toBe('0')
+    expect(actual[1]).not.toHaveProperty('in_resume')
+
+    expect(actual[2].skill).toBe('laboris')
+    expect(actual[2].jobskillcount).toBe('5')
+    expect(actual[2].resumeskillcount).toBe('0')
+    expect(actual[2]).not.toHaveProperty('in_resume')
+
+    expect(actual[3].skill).toBe('officia')
+    expect(actual[3].jobskillcount).toBe('1')
+    expect(actual[3].resumeskillcount).toBe('0')
+    expect(actual[3]).not.toHaveProperty('in_resume')
+})
+
+test('test skill count compare table with empty jobskills', () => {
+    const jobskills = [] as any
+    const resumeskills = [{ skill: 'dolore', count: '1' }, { skill: 'reprehenderit', count: '2' }, { skill: 'laboris', count: '5' }, { skill: 'officia', count: '1' }]
+    const actual = createSkillCountCompareArray(jobskills, resumeskills)
+
+    expect(actual).toHaveLength(0)
 })

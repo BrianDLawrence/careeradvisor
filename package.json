@@ -21,6 +21,9 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
-    "mongodb": "^6.1.0"
+    "@heroicons/vue": "^2.0.18",
+    "@pinia/nuxt": "^0.5.1",
+    "mongodb": "^6.1.0",
+    "pinia": "^2.1.7"
   }
 }

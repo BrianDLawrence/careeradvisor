@@ -6,11 +6,12 @@
       </div>
     </div>
     <div v-if="!pending">
-        <TheSkillScanner :skillsArray="data"
-        ScannerType="SkillScannerModule"
-        ScannerTitle="Job Skill Scanner"
-        ScannedTextTitle="Job Description"
-        ScanInstructions="Copy & Paste a job description"></TheSkillScanner>
+      <TheSkillComparer></TheSkillComparer>
+      <TheSkillScanner :skillsArray="data" ScannerType="Job" ScannerTitle="Job Skill Scanner"
+        ScannedTextTitle="Job Description" ScanInstructions="Copy & Paste a job description"></TheSkillScanner>
+      <TheSkillScanner :skillsArray="data" ScannerType="Resume" ScannerTitle="Resume Skill Scanner"
+        ScannedTextTitle="Resume" ScanInstructions="Copy & Paste the contents of your Resume or CV"></TheSkillScanner>
+
     </div>
   </div>
 </template>

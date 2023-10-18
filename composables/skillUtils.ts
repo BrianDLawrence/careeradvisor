@@ -3,6 +3,13 @@ type SkillWithCount = {
     skill: string;
     count: string;
 };
+interface SkillCompareItem {
+    skill: string;
+    in_resume?: boolean;
+    jobskillcount?: string;
+    resumeskillcount?: string;
+}
+
 
 
 export const parseSkillsFromText = (listofskills: SkillObject[], text: string): string[] => {
@@ -41,6 +48,38 @@ export const parseSkillsWCountFromText = (parsedSkills: string[], text: string):
     });
 
     return returnSkills;
+}
+
+export const skillHighlight = (arrayOfSkills: string[], text: string): string => {
+    const descendLengthSkillsArray = arrayOfSkills.sort((a, b) => b.length - a.length); // This is required to highlight multiple word skills
+    const wordsRegExp = new RegExp('(^|\\W)(' + descendLengthSkillsArray.map(o => escapeRegExpLocal(o)).join("|") + ')(?=\\W|$)', 'gi');
+    return text ? text.replace(wordsRegExp, '$1<mark>$2</mark>') : "";
+}
+
+export const createSkillCountCompareArray = (jobskills: SkillWithCount[], resumeskills: SkillWithCount[]): SkillCompareItem[] => {
+    const compareArray: SkillCompareItem[] = [];
+
+    for (const jobskill of jobskills) {
+        const skillcompareitem: SkillCompareItem = { "skill": jobskill.skill };
+
+        for (const resumeskill of resumeskills) {
+            if (resumeskill.skill === jobskill.skill) {
+                skillcompareitem.in_resume = true;
+                skillcompareitem.jobskillcount = jobskill.count;
+                skillcompareitem.resumeskillcount = resumeskill.count;
+                break;
+            }
+        }
+
+        if (!skillcompareitem.in_resume) {
+            skillcompareitem.jobskillcount = jobskill.count;
+            skillcompareitem.resumeskillcount = "0";
+        }
+
+        compareArray.push(skillcompareitem);
+    }
+
+    return compareArray;
 }
 
 
