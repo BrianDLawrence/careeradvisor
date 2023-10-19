@@ -5,16 +5,15 @@
         <h2 class="card-title text-4xl font-bold place-content-center">{{ ScannerTitle }}</h2>
         <p v-if="textscanned">{{ ScannedTextTitle }}</p>
         <p v-else>{{ ScanInstructions }}</p>
-        <div v-if="scanning">
-          <span class="loading loading-bars loading-lg"></span>
+        <div v-if="scanning" class="grid">
+          <span class="loading loading-bars loading-lg justify-self-center"></span>
         </div>
-
         <textarea v-model="textforparsing" class="textarea border-accent text-black" rows="10" placeholder="..."
           :tabindex="1" ref="jobdescriptiontextareabox" v-if="!(textscanned || scanning)"></textarea>
 
         <div v-if="textscanned && !scanning" class="flex flex-col md:flex-row">
           <div class="basis-full md:basis-3/4">
-            <div class="prose px-1 bg-white text-black-content text-xs" v-html="jobdescriptionhighlighted">
+            <div class="prose px-1 text-xs" v-html="jobdescriptionhighlighted">
             </div>
           </div>
           <div class="basis-full md:basis-1/4 bg-primary text-primary-content p-2 rounded-xl">
@@ -93,10 +92,12 @@ const scanagain = () => {
 
 const saveSkills = () => {
   if (props.ScannerType == "Job") {
+    skillStore.setJobDescription(textforparsing.value)
     skillStore.setScannedJobSkills(parsedSkills)
     skillStore.setScannedJobSkillCounts(parsedSkillCounts)
   }
   else if (props.ScannerType == "Resume") {
+    skillStore.setResume(textforparsing.value)
     skillStore.setScannedResumeSkills(parsedSkills)
     skillStore.setScannedResumeSkillCounts(parsedSkillCounts)
   }

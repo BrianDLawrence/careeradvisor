@@ -11,12 +11,15 @@
         ScannedTextTitle="Job Description" ScanInstructions="Copy & Paste a job description"></TheSkillScanner>
       <TheSkillScanner :skillsArray="data" ScannerType="Resume" ScannerTitle="Resume Skill Scanner"
         ScannedTextTitle="Resume" ScanInstructions="Copy & Paste the contents of your Resume or CV"></TheSkillScanner>
+      <TheChatGptAnalyzer></TheChatGptAnalyzer>
 
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import TheChatGptAnalyzer from '~/components/TheChatGptAnalyzer.vue';
+
 useHead({
   title: "Career Advisor",
   meta: [
