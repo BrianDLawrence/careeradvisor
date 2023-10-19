@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
 
     const query = getQuery(event);
 
-    const question = "Here is my resume: " + query.resume + " Here is the job description that I am interested in: " + query.jobdescription + " As a master career consultant, please review and provide some practical feedback on what changes I could make to my resume to have a greater chance of getting an interview."
+    const question = "Here is my resume: " + query.resume + " THIS IS THE END OF THE RESUME \n\n Here is the job description that I am interested in: " + query.jobdescription + " END OF JOB DESCRIPTION \n\n As a master career consultant, please review and provide some practical feedback on what changes I could make to my resume to have a greater chance of getting an interview, please consider the job description and provide pragmatic suggestions."
 
     console.log("To Chat GPT:" + question)
 
