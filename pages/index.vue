@@ -2,7 +2,7 @@
   <div>
     <div class="flex justify-center py-10">
       <div class="prose lg:prose-xl">
-        <h1>Career Advisor</h1>
+        <h1>Resume ATS Advisor</h1>
       </div>
     </div>
     <div v-if="!pending">
