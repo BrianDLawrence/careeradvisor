@@ -8,8 +8,8 @@ interface Skill {
     skill: string;
 }
 */
-import fs from 'fs';
-const SKILLDATA = JSON.parse(fs.readFileSync('server/api/skills.json', 'utf8'));
+//import fs from 'fs';
+import SKILLDATA from './skills.json'
 
 export default defineEventHandler(async (event) => {
 

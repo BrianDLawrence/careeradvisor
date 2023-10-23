@@ -9,7 +9,7 @@
           <span class="loading loading-bars loading-lg justify-self-center"></span>
         </div>
         <textarea v-model="textforparsing" class="textarea border-accent text-black" rows="10" placeholder="..."
-          :tabindex="1" ref="jobdescriptiontextareabox" v-if="!(textscanned || scanning)"></textarea>
+          :tabindex="TabOrderBase + 1" ref="jobdescriptiontextareabox" v-if="!(textscanned || scanning)"></textarea>
 
         <div v-if="textscanned && !scanning" class="flex flex-col md:flex-row">
           <div class="basis-full md:basis-3/4">
@@ -27,10 +27,10 @@
         </div>
 
         <div v-if="!scanning && !textscanned" class="card-actions justify-center">
-          <button class="btn btn-accent" @click="scan()" :tabindex="2">Scan</button>
+          <button class="btn btn-accent" @click="scan()" :tabindex="TabOrderBase + 2">Scan</button>
         </div>
         <div v-if="textscanned && !scanning" class="card-actions justify-center">
-          <button class="btn btn-neutral" @click="scanagain()" :tabindex="1">Rescan</button>
+          <button class="btn btn-neutral" @click="scanagain()" :tabindex="TabOrderBase + 1">Rescan</button>
         </div>
       </div>
     </div>
@@ -43,6 +43,7 @@ type SkillWithCount = {
   skill: string;
   count: string;
 };
+
 
 const props = defineProps({
   skillsArray: {
@@ -65,6 +66,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  TabOrderBase: { //For accessibility 
+    type: Number,
+    required: true,
+  }
 });
 
 const textforparsing = ref("")

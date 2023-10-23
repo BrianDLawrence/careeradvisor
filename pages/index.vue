@@ -8,9 +8,11 @@
     <div v-if="!pending">
       <TheSkillComparer></TheSkillComparer>
       <TheSkillScanner :skillsArray="data" ScannerType="Job" ScannerTitle="Job Skill Scanner"
-        ScannedTextTitle="Job Description" ScanInstructions="Copy & Paste a job description"></TheSkillScanner>
+        ScannedTextTitle="Job Description" ScanInstructions="Copy & Paste a job description" :TabOrderBase=1>
+      </TheSkillScanner>
       <TheSkillScanner :skillsArray="data" ScannerType="Resume" ScannerTitle="Resume Skill Scanner"
-        ScannedTextTitle="Resume" ScanInstructions="Copy & Paste the contents of your Resume or CV"></TheSkillScanner>
+        ScannedTextTitle="Resume" ScanInstructions="Copy & Paste the contents of your Resume or CV" :TabOrderBase=3>
+      </TheSkillScanner>
       <TheChatGptAnalyzer></TheChatGptAnalyzer>
 
     </div>

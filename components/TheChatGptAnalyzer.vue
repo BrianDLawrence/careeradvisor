@@ -10,7 +10,7 @@
                     {{ analysis }}
                 </div>
                 <div v-if="!isAnalyzing" class="card-actions justify-center">
-                    <button class="btn btn-accent" @click="analyzeWithChatGptGet()" :tabindex="1">Analyze</button>
+                    <button class="btn btn-accent" @click="analyzeWithChatGptGet()" :tabindex="10">Analyze</button>
                 </div>
             </div>
         </div>
