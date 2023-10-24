@@ -21,7 +21,7 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   modules: [
-    '@nuxtjs/tailwindcss', '@pinia/nuxt', 'nuxt-gtag'
+    '@nuxtjs/tailwindcss', '@pinia/nuxt', 'nuxt-gtag', '@nuxtjs/robots', 'nuxt-simple-sitemap'
   ],
   gtag: {
     id: 'G-8TVWBV7GYQ',
@@ -35,5 +35,8 @@ export default defineNuxtConfig({
     public: {
       siteUrl: 'https://resume-ats.com',
     },
+  },
+  site: {
+    url: 'https://resume-ats.com',
   },
 })

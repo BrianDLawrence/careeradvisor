@@ -17,12 +17,14 @@
     "daisyui": "^3.9.2",
     "nuxt": "^3.7.4",
     "nuxt-gtag": "^1.1.1",
+    "nuxt-simple-sitemap": "^3.4.0",
     "vitest": "^0.34.6",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"
   },
   "dependencies": {
     "@heroicons/vue": "^2.0.18",
+    "@nuxtjs/robots": "^3.0.0",
     "@pinia/nuxt": "^0.5.1",
     "mongodb": "^6.1.0",
     "openai": "^4.12.4",
