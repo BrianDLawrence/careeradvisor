@@ -2,7 +2,9 @@
   <div class="container-fluid mx-auto">
     <div class="navbar bg-primary text-primary-content">
       <div class="flex-1 xl:px-20 2xl:px-30">
-        <ResumeATSLogo></ResumeATSLogo>
+        <NuxtLink to="/">
+          <ResumeATSLogo></ResumeATSLogo>
+        </NuxtLink>
       </div>
       <div class="flex-none hidden lg:flex">
         <ul class="menu menu-horizontal lg:px-1 xl:px-20 2xl:px-30">
@@ -44,21 +46,21 @@ const consentAnalyticsCookies = useCookie<{ consent: boolean }>(
   "consentanalytics"
 );
 
+const { grantConsent } = useGtag()
+
 onNuxtReady(async () => {
   if (
     consentAnalyticsCookies.value &&
     consentAnalyticsCookies.value.consent == true
   ) {
     console.log("Consent Cookie detected");
-    //useGtagConsent(true);
+    grantConsent()
   } else {
     console.log("NO CONSENT COOKIES");
     let consent_state = <HTMLInputElement>(
       document.getElementById("consent_modal")
     );
-    //consent_state.checked = true;
-    //Currently disabled due to dev -> TODO: install GTAG and enable this when 
-    //going PROD!
+    consent_state.checked = true;
   }
 });
 

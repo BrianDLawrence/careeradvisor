@@ -21,15 +21,18 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   modules: [
-    '@nuxtjs/tailwindcss', '@pinia/nuxt',
+    '@nuxtjs/tailwindcss', '@pinia/nuxt', 'nuxt-gtag'
   ],
+  gtag: {
+    id: 'G-8TVWBV7GYQ'
+  },
   runtimeConfig: {// availabe only server side
     openAIKey: process.env.OPENAIKEY,
     mongoURI: process.env.MONGOURI,
     BASE_URL: process.env.BASE_URL || 'http://localhost:3000',
     // Public keys that are exposed to the client
     public: {
-      siteUrl: 'https://tbd.com',
+      siteUrl: 'https://resume-ats.com',
     },
   },
 })

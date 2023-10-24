@@ -152,14 +152,13 @@
 const consentAnalyticsCookies = useCookie<{ consent: boolean }>(
   "consentanalytics"
 );
-const consentAdCookies = useCookie<{ consent: boolean }>("consentads");
 useHead({
   title: "Privacy Policy",
   meta: [
     {
       name: "description",
       content:
-        "Your privacy is important to us. It is Catetrys&#39; policy to respect your privacy and comply with any applicable law and regulation regarding any personal information we may collect about you.",
+        "Your privacy is important to us. It is Resume-ATSs&#39; policy to respect your privacy and comply with any applicable law and regulation regarding any personal information we may collect about you.",
     },
   ],
 });
@@ -169,7 +168,6 @@ const consentToAll = () => {
     document.getElementById("consent_modal")
   );
   consentAnalyticsCookies.value = { consent: true };
-  consentAdCookies.value = { consent: true };
   location.reload();
 };
 
@@ -178,16 +176,13 @@ const decline = () => {
     document.getElementById("consent_modal")
   );
   consentAnalyticsCookies.value = { consent: false };
-  consentAdCookies.value = { consent: false };
   location.reload();
 };
 
 const consentTrue = computed(() => {
   return (
     consentAnalyticsCookies.value &&
-    consentAnalyticsCookies.value.consent == true &&
-    consentAdCookies.value &&
-    consentAdCookies.value.consent == true
+    consentAnalyticsCookies.value.consent == true
   );
 });
 </script>

@@ -4,10 +4,9 @@
     <div class="modal-box">
       <h3 class="font-bold text-lg">Cookie Settings</h3>
       <p class="py-4">
-        By clicking "Accept All Cookies", you agree to the use of Career Advisor and
+        By clicking "Accept All Cookies", you agree to the use of Resume-ATS and
         third-party cookies to enhance your experience, analyse and measure your
-        engagement with our content, and provide more relevant information which
-        may include ads.
+        engagement with our content, and provide more relevant information.
       </p>
       <div class="modal-action">
         <button id="decline-button" class="btn btn-active btn-ghost" @click="decline">
@@ -26,13 +25,14 @@ const consentAnalyticsCookies = useCookie<{ consent: boolean }>(
   "consentanalytics"
 );
 const consentAdCookies = useCookie<{ consent: boolean }>("consentads");
+const { grantConsent } = useGtag()
 
 const consentToAll = () => {
   let consent_state = <HTMLInputElement>(
     document.getElementById("consent_modal")
   );
   consentAnalyticsCookies.value = { consent: true };
-  //useGtagConsent(true);
+  grantConsent();
   consent_state.checked = false;
 };
 
