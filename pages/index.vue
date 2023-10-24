@@ -23,12 +23,12 @@
 import TheChatGptAnalyzer from '~/components/TheChatGptAnalyzer.vue';
 
 useHead({
-  title: "Career Advisor",
+  title: "Resume ATS Advisor",
   meta: [
     {
       name: "description",
       content:
-        "A Digital Career Coach that guides individuals to realize their personal and career potential by exploring powerful, proven, and practical techniques at the intersection of Information Science, Computer Science, and Career Development. We believe that you need to know yourself to know your plan.",
+        "Maximize your job search with Resume-ats.com! Our platform uses resume ATS technology to review and compare resumes with job descriptions, providing AI-driven suggestions to help your resume stand out and land your dream job.",
     },
   ],
 });

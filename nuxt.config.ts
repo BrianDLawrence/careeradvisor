@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      titleTemplate: "CA: %s",
+      titleTemplate: "Resume ATS: %s",
       htmlAttrs: {
         lang: "en"
       },
@@ -14,7 +14,7 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         {
           name: "description",
-          content: "Career Advisor.",
+          content: "Resume ATS Advisor.",
         }
       ]
     },
