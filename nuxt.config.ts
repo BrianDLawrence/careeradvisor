@@ -24,7 +24,8 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss', '@pinia/nuxt', 'nuxt-gtag'
   ],
   gtag: {
-    id: 'G-8TVWBV7GYQ'
+    id: 'G-8TVWBV7GYQ',
+    initialConsent: false
   },
   runtimeConfig: {// availabe only server side
     openAIKey: process.env.OPENAIKEY,
