@@ -1,6 +1,6 @@
 {
     "functions": {
-        "api/__nitro": {
+        "server/api/*.ts": {
             "maxDuration": 60
         }
     }
