@@ -1,6 +1,6 @@
 {
     "functions": {
-        "__nitro": {
+        "server/api/__nitro": {
             "maxDuration": 60
         }
     }
