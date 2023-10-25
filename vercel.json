@@ -1,6 +1,6 @@
 {
     "functions": {
-        "api/analyzewithchatgpt": {
+        "api/__nitro": {
             "maxDuration": 60
         }
     }
