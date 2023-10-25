@@ -1,6 +1,6 @@
 {
     "functions": {
-        "*.*": {
+        "server/api/analyzewithchatgpt": {
             "maxDuration": 60
         }
     }
