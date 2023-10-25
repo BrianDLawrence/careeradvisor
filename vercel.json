@@ -1,6 +1,6 @@
 {
     "functions": {
-        "analyzewithchatgpt.get.ts": {
+        "api/__nitro.ts": {
             "maxDuration": 60
         }
     }
