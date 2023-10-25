@@ -1,6 +1,6 @@
 {
     "functions": {
-        "api/analyzewithchatgpt.get.ts": {
+        "api/analyzewithchatgpt": {
             "maxDuration": 60
         }
     }
