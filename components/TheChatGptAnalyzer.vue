@@ -9,6 +9,17 @@
                 <div v-if="analyzed && !isAnalyzing" class="whitespace-pre-wrap w-fit">
                     {{ analysis }}
                 </div>
+                <div class="mx-auto justify-items-center md:col-span-2 py-2 hover:cursor-pointer" v-if="isError">
+                    <div class="alert alert-error" @click="confirmError">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Oh No! Something went wrong with the analysis, please try
+                            again.</span>
+                    </div>
+                </div>
                 <div v-if="!isAnalyzing" class="card-actions justify-center">
                     <button class="btn btn-accent" @click="analyzeWithChatGptGet()" :tabindex="10">Analyze</button>
                 </div>
@@ -58,5 +69,9 @@ const analyzeWithChatGptGet = async () => {
     }
 
 }
+
+const confirmError = () => {
+    isError.value = false;
+};
 
 </script>

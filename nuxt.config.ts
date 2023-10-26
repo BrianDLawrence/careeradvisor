@@ -38,8 +38,5 @@ export default defineNuxtConfig({
   },
   site: {
     url: 'https://resume-ats.com',
-  },
-  nitro: {
-    preset: "vercel",
   }
 })
