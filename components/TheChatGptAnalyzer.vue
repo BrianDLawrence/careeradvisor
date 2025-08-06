@@ -7,7 +7,7 @@
                     <span class="loading loading-bars loading-lg justify-self-center"></span>
                 </div>
                 <div v-if="analyzed && !isAnalyzing" class="whitespace-pre-wrap w-fit">
-                    {{ analysis }}
+                    <div class="prose max-w-none" v-html="analysis"></div>
                 </div>
                 <div class="mx-auto justify-items-center md:col-span-2 py-2 hover:cursor-pointer" v-if="isError">
                     <div class="alert alert-error" @click="confirmError">
