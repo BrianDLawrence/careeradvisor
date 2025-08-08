@@ -29,6 +29,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {// availabe only server side
     openAIKey: process.env.OPENAIKEY,
+    openAIModel: process.env.OPENAI_MODEL || 'gpt-4.1-mini',
     mongoURI: process.env.MONGOURI,
     BASE_URL: process.env.BASE_URL || 'http://localhost:3000',
     // Public keys that are exposed to the client
