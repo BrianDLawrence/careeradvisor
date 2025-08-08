@@ -25,14 +25,14 @@ const consentAnalyticsCookies = useCookie<{ consent: boolean }>(
   "consentanalytics"
 );
 const consentAdCookies = useCookie<{ consent: boolean }>("consentads");
-const { grantConsent } = useGtag()
+const { enableAnalytics } = useGtag()
 
 const consentToAll = () => {
   let consent_state = <HTMLInputElement>(
     document.getElementById("consent_modal")
   );
   consentAnalyticsCookies.value = { consent: true };
-  grantConsent();
+  enableAnalytics();
   consent_state.checked = false;
 };
 
