@@ -7,7 +7,9 @@
                     <span class="loading loading-bars loading-lg justify-self-center"></span>
                 </div>
                 <div v-if="analyzed && !isAnalyzing" class="whitespace-pre-wrap w-fit">
-                    <div class="prose max-w-none" v-html="analysis"></div>
+                    <ul class="prose max-w-none list-disc pl-5 space-y-2">
+                        <li v-for="(suggestion, index) in suggestions" :key="index">{{ suggestion }}</li>
+                    </ul>
                 </div>
                 <div class="mx-auto justify-items-center md:col-span-2 py-2 hover:cursor-pointer" v-if="isError">
                     <div class="alert alert-error" @click="confirmError">
@@ -33,7 +35,7 @@
 const isAnalyzing = ref(false);
 const isError = ref(false);
 const analyzed = ref(false);
-const analysis = ref("")
+const suggestions = ref<string[]>([])
 const skillStore = useSkillsStore();
 
 const allscanned = computed(() => {
@@ -63,7 +65,7 @@ const analyzeWithChatGptGet = async () => {
 
     if (data && !isError.value) {
         console.log(data.value);
-        analysis.value = String(data.value!);
+        suggestions.value = (data.value as any).suggestions || [];
         isAnalyzing.value = false;
         analyzed.value = true;
     }
