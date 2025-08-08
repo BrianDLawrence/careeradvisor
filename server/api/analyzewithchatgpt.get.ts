@@ -32,9 +32,9 @@ export default defineEventHandler(async (event) => {
     const response = await openai.responses.create({
       model: config.openAIModel,
       input: question,
-      response_format: {
-        type: "json_schema",
-        json_schema: {
+      text: {
+        format: {
+          type: "json_schema",
           name: "resume_suggestions",
           schema: {
             type: "object",
